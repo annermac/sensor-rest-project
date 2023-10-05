@@ -9,6 +9,8 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@ToString
 @Entity
 @Table(name = "sensor", schema = "public")
 public class Sensor {
