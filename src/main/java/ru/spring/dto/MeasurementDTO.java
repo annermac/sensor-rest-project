@@ -2,8 +2,7 @@ package ru.spring.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
+import ru.spring.models.Sensor;
 
 @Setter
 @Getter
@@ -20,8 +19,5 @@ public class MeasurementDTO {
     private Boolean raining;
 
     @NotNull
-    private String sensor;
-
-    private LocalDateTime created;
-
+    private Sensor sensor;
 }

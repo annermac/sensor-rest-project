@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.spring.dto.MeasurementDTO;
-import ru.spring.dto.MeasurementShortDTO;
 import ru.spring.services.MeasurementServiceImpl;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class MeasurementController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MeasurementShortDTO>> getAll() {
+    public ResponseEntity<List<MeasurementDTO>> getAll() {
         return new ResponseEntity<>(measurementServiceImpl.getAll(), HttpStatus.OK);
     }
 

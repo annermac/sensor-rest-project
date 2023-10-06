@@ -1,8 +1,6 @@
 package ru.spring.mapper;
 
 import ru.spring.dto.MeasurementDTO;
-import ru.spring.dto.MeasurementShortDTO;
-import ru.spring.dto.SensorDTO;
 import ru.spring.models.Measurement;
 import ru.spring.models.Sensor;
 
@@ -17,10 +15,10 @@ public class MeasurementMapper {
                 LocalDateTime.now());
     }
 
-    public static MeasurementShortDTO mapToMeasurementShortNotDTO(Measurement measurement, SensorDTO sensorDTO) {
-        return new MeasurementShortDTO(
+    public static MeasurementDTO mapToMeasurementDTO(Measurement measurement) {
+        return new MeasurementDTO(
                 measurement.getValue(),
                 measurement.getRaining(),
-                sensorDTO);
+                measurement.getSensor());
     }
 }

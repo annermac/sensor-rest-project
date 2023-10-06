@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import ru.spring.models.Sensor;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -34,9 +33,9 @@ class SensorRepositoryTest {
     }
 
     @Test
-    public void getAddSensor(){
+    public void getAddSensor() {
         Sensor actualSensor = sensorRepository.save(sensorNew);
         assertEquals(sensorNew.getId(), actualSensor.getId());
-        assertEquals(sensorNew.getName(),actualSensor.getName());
+        assertEquals(sensorNew.getName(), actualSensor.getName());
     }
 }

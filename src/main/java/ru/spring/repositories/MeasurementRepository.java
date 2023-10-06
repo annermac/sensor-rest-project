@@ -6,5 +6,4 @@ import ru.spring.models.Measurement;
 
 @Repository
 public interface MeasurementRepository extends JpaRepository<Measurement, Integer> {
-
 }

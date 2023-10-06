@@ -10,10 +10,10 @@ import ru.spring.mapper.MeasurementMapper;
 import ru.spring.models.Measurement;
 import ru.spring.models.Sensor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class MeasurementRepositoryTest {
@@ -26,33 +26,32 @@ class MeasurementRepositoryTest {
 
     @BeforeEach
     public void setUp() {
-        measurementNew = MeasurementDTO.builder()
-                .value(50.5)
-                .raining(true)
-                .sensor("Сенсор 1")
-                .created(LocalDateTime.now())
-                .build();
-
         Sensor sensorNew = Sensor.builder()
                 .name("Сенсор 1")
                 .build();
         sensorRepository.save(sensorNew);
-        measurementRepository.save(MeasurementMapper.mapToMeasurement(measurementNew, sensorNew));
 
+        measurementNew = MeasurementDTO.builder()
+                .value(50.5)
+                .raining(true)
+                .sensor(sensorNew)
+                .build();
+
+        measurementRepository.save(MeasurementMapper.mapToMeasurement(measurementNew, sensorNew));
     }
+
     @Test
-    public void testAddMeasurement(){
-        Sensor sensor = sensorRepository.findByNameIgnoreCase(measurementNew.getSensor());
+    public void testAddMeasurement() {
+        Sensor sensor = sensorRepository.findByNameIgnoreCase(measurementNew.getSensor().getName());
         Measurement measurementSaved = measurementRepository.save(MeasurementMapper.mapToMeasurement(measurementNew, sensor));
         assertEquals(measurementSaved.getValue(), measurementNew.getValue());
         assertEquals(measurementSaved.getRaining(), measurementNew.getRaining());
-        assertEquals(measurementSaved.getSensor().getName(), measurementNew.getSensor());
+        assertEquals(measurementSaved.getSensor().getName(), measurementNew.getSensor().getName());
     }
 
     @Test
-    public void testGetAllMeasurements(){
+    public void testGetAllMeasurements() {
         List<Measurement> measurementList = measurementRepository.findAll();
         assertFalse(measurementList.isEmpty());
     }
-
 }
